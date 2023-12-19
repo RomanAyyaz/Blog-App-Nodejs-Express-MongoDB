@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<%- include('partials/header.ejs') %>
+    <title>Blogs</title>
+
+    <body>
+        <!-- <%- include('partials/navbar.ejs') %> -->
+        <!-- NAVBAR CODE -->
+        <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/indexwithuser">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog/add-new">Add Blog</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Roman Baloch
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="/user/logout">logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- User codes -->
+        <div class="container mt-3">
+            <h1>
+                <%= blog.title %>
+            </h1>
+            <img src=" <%= blog.coverImage %> " alt="" width="200px">
+            <p>
+                <%= blog.body %>
+            </p>
+        </div>
+
+        <!-- comments  -->
+        <div class="container mt-3">
+            <h1>Comments (<%= comments.length %>) </h1>
+            <form action="/blog/comment/<%= blog._id %>" method="post">
+                <div class="mb-3">
+                    <input type="text" name="content" class="form-control" placeholder="Enter your comment" />
+                    <button class="btn btn-sm btn-primary mt-2" type="submit">Add</button>
+                </div>
+            </form>
+            <div class="mt-3">
+                <% comments.forEach(comment=> { %>
+                    <div>
+                        <%= comment.createdBy.fullname %>
+                            <pre><%= comment.content %></pre>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+
+        <!-- Script -->
+        <%- include('partials/script.ejs') %>
+    </body>
+
+</html>

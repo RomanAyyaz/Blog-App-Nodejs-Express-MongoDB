@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<%- include('partials/header.ejs') %>
+    <title>signin</title>
+
+    <body>
+        <%- include('partials/navbar.ejs') %>
+            <div class="container mt-3">
+                <form action="/user/signin" method="post">
+                    <div class="form-floating mb-3">
+                        <input type="email" name="email" class="form-control" id="password"
+                            placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" name="password" class="form-control" id="password"
+                            placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <button class=" mt-2 btn btn-outline-primary" type="submit">Login</button>
+                </form>
+            </div>
+            <%- include('partials/script.ejs') %>
+    </body>
+
+</html>
